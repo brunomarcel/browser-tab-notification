@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Show</title>
+
+	<link id="favicon" rel="icon" href="http://www.favicon.cc/logo3d/470534.png"/>
+
+</head>
+<body>
+
+	<h1>Teste</h1>
+
+	<script src="http://lab.ejci.net/favico.js/favico.min.js"></script>
+	<script>
+
+		window.onload = function(){
+			var iconHidden = "http://www.favicon.cc/logo3d/571982.png";
+			var iconShow = "http://www.favicon.cc/logo3d/470534.png";
+
+			var favicon = new Favico({
+				animation:'popFade'
+			});
+
+			function handleVisibilityChange() {
+				if (document.hidden) {
+					document.title = "Hidden";
+					document.getElementById('favicon').href = iconHidden;
+					favicon.badge(2);
+				} else  {
+					document.title = "Show"
+					document.getElementById('favicon').href = iconShow;
+				}
+			}
+
+			document.addEventListener("visibilitychange", handleVisibilityChange, false);
+		}
+
+	</script>
+
+</body>
+</html>
