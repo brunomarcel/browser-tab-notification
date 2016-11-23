@@ -62,10 +62,10 @@ function handleVisibilityChange() {
   }else{
     if (document.hidden) {
       document.title = "Hidden";
-      document.getElementById('favicon').href = 'hidden.png';
+      document.querySelector('link[rel=icon]').href = 'hidden.png';
     } else  {
       document.title = "Show";
-      document.getElementById('favicon').href = 'show.png';
+      document.querySelector('link[rel=icon]').href = 'show.png';
     }
   }
 }
@@ -105,10 +105,10 @@ document.addEventListener("visibilitychange", handleVisibilityChange, false);
 				}else{
 					if (document.hidden) {
 						document.title = "Hidden";
-						document.getElementById('favicon').href = 'hidden.png';
+						document.querySelector('link[rel=icon]').href = 'hidden.png';
 					} else  {
 						document.title = "Show";
-						document.getElementById('favicon').href = 'show.png';
+						document.querySelector('link[rel=icon]').href = 'show.png';
 					}
 				}
 			}
