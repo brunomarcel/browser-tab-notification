@@ -20,29 +20,26 @@
 		window.onload = function(){
 			var iconHidden = "hidden.png";
 			var iconShow = "show.png";
-			var interval;
+			var favicon = new Favico({
+				animation:'popFade'
+			});
 
 			function handleVisibilityChange() {
 				if (document.hidden) {
 					document.title = "Hidden";
 					document.getElementById('favicon').href = iconHidden;
-					var count = 1;
-					var favicon = new Favico({
-						animation:'popFade'
-					});
-					interval = setInterval(function(){
-						count++;
-						favicon.badge(count);
-					}, 2000)
+					setTimeout(function(){
+						favicon.badge(7);
+					}, 5000)
+					setTimeout(function(){
+						favicon.badge(21);
+					}, 14000)
 
 				} else  {
 					document.title = "Show"
 					document.getElementById('favicon').href = iconShow;
-					var favicon = new Favico({
-						animation:'popFade'
-					});
-					clearInterval(interval);
 					favicon.reset();
+
 				}
 			}
 
