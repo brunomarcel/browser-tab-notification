@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Show</title>
+	<title>tab change notify</title>
 
 	<link id="favicon" rel="icon" href="show.png"/>
 	
@@ -32,7 +32,8 @@
 	<div id="container">
 		<h1>Exemplo de interação com o favicon na troca de abas.</h1>
 		<ul>
-			<li><a href="#number">Usando notificação (favico.js) </a></li>
+			<li><a href="#number">Usando notificação (favico.js) </a> (Chrome, Firefox, Opera e IE11+) </li>
+			<li><a href="#bullet">Alterando o title</a></li>
 			<li><a href="#image">Alterando a imagem</a></li>
 		</ul>
 
@@ -47,7 +48,6 @@ function handleVisibilityChange() {
 
   if(location.hash == '#number'){	
     if (document.hidden) {
-      document.title = "Hidden";
       var count = 1;
       interval = setInterval(function(){
         favicon.badge(count);
@@ -55,16 +55,24 @@ function handleVisibilityChange() {
       }, 3000)
 
     } else  {
-      document.title = "Show";
       clearInterval(interval);
       favicon.reset();
     }
+  }else if(location.hash == '#bullet'){	
+    if (document.hidden) {
+      var count = 1;
+      interval = setInterval(function(){
+        document.title = "(" + count + ") tab change status";
+        count++;
+      }, 3000)
+    } else  {
+      document.title = "tab change status";
+      clearInterval(interval);
+    }
   }else{
     if (document.hidden) {
-      document.title = "Hidden";
       document.querySelector('link[rel=icon]').href = 'hidden.png';
     } else  {
-      document.title = "Show";
       document.querySelector('link[rel=icon]').href = 'show.png';
     }
   }
@@ -90,7 +98,6 @@ document.addEventListener("visibilitychange", handleVisibilityChange, false);
 	
 				if(location.hash == '#number'){	
 					if (document.hidden) {
-						document.title = "Hidden";
 						var count = 1;
 						interval = setInterval(function(){
 							favicon.badge(count);
@@ -98,16 +105,24 @@ document.addEventListener("visibilitychange", handleVisibilityChange, false);
 						}, 3000)
 
 					} else  {
-						document.title = "Show";
 						clearInterval(interval);
 						favicon.reset();
 					}
+				}else if(location.hash == '#bullet'){	
+					if (document.hidden) {
+						var count = 1;
+						interval = setInterval(function(){
+							document.title = "(" + count + ") tab change status";
+							count++;
+						}, 3000)
+					} else  {
+						document.title = "tab change status";
+						clearInterval(interval);
+					}
 				}else{
 					if (document.hidden) {
-						document.title = "Hidden";
 						document.querySelector('link[rel=icon]').href = 'hidden.png';
 					} else  {
-						document.title = "Show";
 						document.querySelector('link[rel=icon]').href = 'show.png';
 					}
 				}
