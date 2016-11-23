@@ -47,7 +47,7 @@ var favicon = new Favico({
 function handleVisibilityChange() {
 
   if(location.hash == '#number'){	
-    if (document.hidden) {
+    if (isHidden()) {
       var count = 1;
       interval = setInterval(function(){
         favicon.badge(count);
@@ -59,7 +59,7 @@ function handleVisibilityChange() {
       favicon.reset();
     }
   }else if(location.hash == '#bullet'){	
-    if (document.hidden) {
+    if (isHidden()) {
       var count = 1;
       interval = setInterval(function(){
         document.title = "(" + count + ") tab change status";
@@ -70,12 +70,32 @@ function handleVisibilityChange() {
       clearInterval(interval);
     }
   }else{
-    if (document.hidden) {
+    if (isHidden()) {
       document.querySelector('link[rel=icon]').href = 'hidden.png';
     } else  {
       document.querySelector('link[rel=icon]').href = 'show.png';
     }
   }
+}
+
+function getHiddenProp(){
+  var prefixes = ['webkit','moz','ms','o'];
+		
+  if ('hidden' in document) return 'hidden';
+		
+  for (var i = 0; i < prefixes.length; i++){
+    if ((prefixes[i] + 'Hidden') in document) 
+      return prefixes[i] + 'Hidden';
+  }
+
+  return null;
+}
+
+function isHidden() {
+  var prop = getHiddenProp();
+  if (!prop) return false;
+
+  return document[prop];
 }
 
 document.addEventListener("visibilitychange", handleVisibilityChange, false);
@@ -97,7 +117,7 @@ document.addEventListener("visibilitychange", handleVisibilityChange, false);
 			function handleVisibilityChange() {
 	
 				if(location.hash == '#number'){	
-					if (document.hidden) {
+					if (isHidden()) {
 						var count = 1;
 						interval = setInterval(function(){
 							favicon.badge(count);
@@ -109,7 +129,7 @@ document.addEventListener("visibilitychange", handleVisibilityChange, false);
 						favicon.reset();
 					}
 				}else if(location.hash == '#bullet'){	
-					if (document.hidden) {
+					if (isHidden()) {
 						var count = 1;
 						interval = setInterval(function(){
 							document.title = "(" + count + ") tab change status";
@@ -120,12 +140,32 @@ document.addEventListener("visibilitychange", handleVisibilityChange, false);
 						clearInterval(interval);
 					}
 				}else{
-					if (document.hidden) {
+					if (isHidden()) {
 						document.querySelector('link[rel=icon]').href = 'hidden.png';
 					} else  {
 						document.querySelector('link[rel=icon]').href = 'show.png';
 					}
 				}
+			}
+
+			function getHiddenProp(){
+				var prefixes = ['webkit','moz','ms','o'];
+					
+				if ('hidden' in document) return 'hidden';
+					
+				for (var i = 0; i < prefixes.length; i++){
+					if ((prefixes[i] + 'Hidden') in document) 
+						return prefixes[i] + 'Hidden';
+				}
+
+				return null;
+			}
+
+			function isHidden() {
+				var prop = getHiddenProp();
+				if (!prop) return false;
+    
+				return document[prop];
 			}
 
 			document.addEventListener("visibilitychange", handleVisibilityChange, false);
