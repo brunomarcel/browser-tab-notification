@@ -27,8 +27,8 @@
 			function handleVisibilityChange() {
 				if (document.hidden) {
 					document.title = "Hidden";
-					document.getElementById('favicon').href = iconHidden;
-
+					//document.getElementById('favicon').href = iconHidden;
+					favicon.image(iconHidden);
 					var count = 1;
 					interval = setInterval(function(){
 						count++;
@@ -37,7 +37,9 @@
 
 				} else  {
 					document.title = "Show"
-					document.getElementById('favicon').href = iconShow;
+					//document.getElementById('favicon').href = iconShow;
+					favicon.image(iconShow);
+					favicon.reset();
 					clearInterval(interval);
 				}
 			}
