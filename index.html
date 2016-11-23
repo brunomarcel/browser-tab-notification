@@ -4,12 +4,14 @@
 	<meta charset="UTF-8">
 	<title>Show</title>
 
-	<link id="favicon" rel="icon" href="favicon.png"/>
+	<link id="favicon" rel="icon" href="show.png"/>
 
 </head>
 <body>
 
 	<h1>Teste</h1>
+	<a href="#number"> number </a>
+	<a href="#image"> image </a>
 
 	<script src="favico.min.js"></script>
 	<script>
@@ -19,23 +21,34 @@
 			var interval;
 			var favicon = new Favico({
 				animation:'popFade',
-				bgColor : '#1b0cc9'
+				bgColor : '#1b0cc9',
+				
 			});
 
 			function handleVisibilityChange() {
-				if (document.hidden) {
-					document.title = "Hidden";
-					var count = 1;
-					interval = setInterval(function(){
-						favicon.badge(count);
-						count++;
-					}, 3000)
+	
+				if(location.hash == '#number'){	
+					if (document.hidden) {
+						document.title = "Hidden";
+						var count = 1;
+						interval = setInterval(function(){
+							favicon.badge(count);
+							count++;
+						}, 3000)
 
-				} else  {
-					document.title = "Show";
-					clearInterval(interval);
-					favicon.reset();
-
+					} else  {
+						document.title = "Show";
+						clearInterval(interval);
+						favicon.reset();
+					}
+				}else{
+					if (document.hidden) {
+						document.title = "Hidden";
+						document.getElementById('favicon').href = 'hidden.png';
+					} else  {
+						document.title = "Show";
+						document.getElementById('favicon').href = 'show.png';
+					}
 				}
 			}
 
