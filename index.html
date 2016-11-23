@@ -4,40 +4,36 @@
 	<meta charset="UTF-8">
 	<title>Show</title>
 
-	<link id="favicon" rel="icon" href="show.png"/>
+	<link id="favicon" rel="icon" href="favicon.png"/>
 
 </head>
 <body>
 
 	<h1>Teste</h1>
 
-	<img src="show.png" id="icon-show" alt="">
-	<img src="hidden.png" id="icon-hidden" alt="">
-
 	<script src="favico.min.js"></script>
 	<script>
 
 		window.onload = function(){
-			var iconHidden = "hidden.png";
-			var iconShow = "show.png";
+
+			var interval;
 			var favicon = new Favico({
-				animation:'popFade'
+				animation:'popFade',
+				bgColor : '#5CB85C'
 			});
 
 			function handleVisibilityChange() {
 				if (document.hidden) {
 					document.title = "Hidden";
-					document.getElementById('favicon').href = iconHidden;
-					setTimeout(function(){
-						favicon.badge(7);
-					}, 5000)
-					setTimeout(function(){
-						favicon.badge(21);
-					}, 14000)
+					var count = 1;
+					interval = setInterval(function(){
+						favicon.badge(count);
+						count++;
+					}, 3000)
 
 				} else  {
-					document.title = "Show"
-					document.getElementById('favicon').href = iconShow;
+					document.title = "Show";
+					clearInterval(interval);
 					favicon.reset();
 
 				}
