@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>tab change notify</title>
+	<title>browser tab notification</title>
 
 	<link id="favicon" rel="icon" href="show.png"/>
 	
@@ -32,9 +32,9 @@
 	<div id="container">
 		<h1>Exemplo de interação com o favicon na troca de abas.</h1>
 		<ul>
-			<li><a href="#number">Usando notificação (favico.js) </a> (Chrome, Firefox, Opera e IE11+) </li>
-			<li><a href="#bullet">Alterando o title</a></li>
-			<li><a href="#image">Alterando a imagem</a></li>
+			<li><a href="#number">Usando notificação com favico.js </a> (Chrome, Firefox, Opera)</li>
+			<li><a href="#bullet">Alterando o title</a> (Chrome, Firefox, Opera, IE11+)</li>
+			<li><a href="#image">Alterando a imagem</a> (Chrome, Firefox, Opera, IE11+)</li>
 		</ul>
 
 		<pre>
@@ -62,11 +62,11 @@ function handleVisibilityChange() {
     if (isHidden()) {
       var count = 1;
       interval = setInterval(function(){
-        document.title = "(" + count + ") tab change status";
+        document.title = "(" + count + ") browser tab notification";
         count++;
       }, 3000)
     } else  {
-      document.title = "tab change status";
+      document.title = "browser tab notification";
       clearInterval(interval);
     }
   }else{
@@ -132,11 +132,11 @@ document.addEventListener("visibilitychange", handleVisibilityChange, false);
 					if (isHidden()) {
 						var count = 1;
 						interval = setInterval(function(){
-							document.title = "(" + count + ") tab change status";
+							document.title = "(" + count + ") browser tab notification";
 							count++;
 						}, 3000)
 					} else  {
-						document.title = "tab change status";
+						document.title = "browser tab notification";
 						clearInterval(interval);
 					}
 				}else{
