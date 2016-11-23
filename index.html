@@ -5,14 +5,76 @@
 	<title>Show</title>
 
 	<link id="favicon" rel="icon" href="show.png"/>
-
+	
+	<style>
+		#container {
+			width: 980px;
+			margin: 0 auto
+		}
+		pre {
+			display: block;
+			padding: 9.5px;
+			margin: 0 0 10px;
+			font-size: 13px;
+			line-height: 1.428571429;
+			color: #333;
+			word-break: break-all;
+			word-wrap: break-word;
+			background-color: #f5f5f5;
+			border: 1px solid #ccc;
+			border-radius: 4px;
+			max-width: 700px
+		}
+	</style>
 </head>
 <body>
 
-	<h1>Teste</h1>
-	<a href="#number"> number </a>
-	<a href="#image"> image </a>
+	<div id="container">
+		<h1>Exemplo de interação com o favicon na troca de abas.</h1>
+		<ul>
+			<li><a href="#number">Usando notificação (favico.js) </a></li>
+			<li><a href="#image">Alterando a imagem</a></li>
+		</ul>
 
+		<pre>
+var interval;
+var favicon = new Favico({
+  animation:'popFade',
+  bgColor : '#1b0cc9'
+});
+
+function handleVisibilityChange() {
+
+  if(location.hash == '#number'){	
+    if (document.hidden) {
+      document.title = "Hidden";
+      var count = 1;
+      interval = setInterval(function(){
+        favicon.badge(count);
+        count++;
+      }, 3000)
+
+    } else  {
+      document.title = "Show";
+      clearInterval(interval);
+      favicon.reset();
+    }
+  }else{
+    if (document.hidden) {
+      document.title = "Hidden";
+      document.getElementById('favicon').href = 'hidden.png';
+    } else  {
+      document.title = "Show";
+      document.getElementById('favicon').href = 'show.png';
+    }
+  }
+}
+
+document.addEventListener("visibilitychange", handleVisibilityChange, false);
+		</pre>
+
+		<p>Troque de aba para ver o resultado.</p>
+	</div>
 	<script src="favico.min.js"></script>
 	<script>
 
@@ -21,8 +83,7 @@
 			var interval;
 			var favicon = new Favico({
 				animation:'popFade',
-				bgColor : '#1b0cc9',
-				
+				bgColor : '#1b0cc9'
 			});
 
 			function handleVisibilityChange() {
