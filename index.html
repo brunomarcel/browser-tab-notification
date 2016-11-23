@@ -20,19 +20,16 @@
 		window.onload = function(){
 			var iconHidden = "hidden.png";
 			var iconShow = "show.png";
-
-			var favicon = new Favico({
-				animation:'popFade'
-			});
-
 			var interval;
 
 			function handleVisibilityChange() {
 				if (document.hidden) {
 					document.title = "Hidden";
-					var icon = document.getElementById('icon-hidden');
-					favicon.image(icon);
+					document.getElementById('favicon').href = iconHidden;
 					var count = 1;
+					var favicon = new Favico({
+						animation:'popFade'
+					});
 					interval = setInterval(function(){
 						count++;
 						favicon.badge(count);
@@ -40,10 +37,12 @@
 
 				} else  {
 					document.title = "Show"
-					var icon = document.getElementById('icon-show');
-					favicon.image(icon);
-					favicon.reset();
+					document.getElementById('favicon').href = iconShow;
+					var favicon = new Favico({
+						animation:'popFade'
+					});
 					clearInterval(interval);
+					favicon.reset();
 				}
 			}
 
