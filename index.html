@@ -22,14 +22,23 @@
 				animation:'popFade'
 			});
 
+			var interval;
+
 			function handleVisibilityChange() {
 				if (document.hidden) {
 					document.title = "Hidden";
 					document.getElementById('favicon').href = iconHidden;
-					//favicon.badge(2);
+
+					var count = 1;
+					interval = setInterval(function(){
+						count++;
+						favicon.badge(count);
+					}, 2000)
+
 				} else  {
 					document.title = "Show"
 					document.getElementById('favicon').href = iconShow;
+					clearInterval(interval);
 				}
 			}
 
